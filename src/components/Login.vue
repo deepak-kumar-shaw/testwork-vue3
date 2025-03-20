@@ -1,48 +1,42 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from "vue";
 
- const form = ref(false);
-  const username = ref('');
-  const password = ref('');
-  const loading = ref(false);
+const form = ref(false);
+const username = ref("");
+const password = ref("");
+const loading = ref(false);
 
 const showPassword = ref(false);
 
-const disableLogin= computed(()=>{
-console.log('disableLogin');
-return  !username.value || !password.value;
-});
-
-const loginHandler = ()=>{
-console.log('login');
- if (!form.value) return
-    loading.value = true;
-    setTimeout(() => (loading.value = false), 2000)
+const loginHandler = () => {
+  console.log("login");
+  if (!form.value) return;
+  loading.value = true;
+  setTimeout(() => (loading.value = false), 2000);
 };
 
-function required (v) {
-    return !!v || 'Field is required'
-  }
-
+function required(v) {
+  return !!v || "Field is required";
+}
 </script>
 
 <template>
-<div>
-  <v-card width="400" class="mx-auto mt-5">
+  <div>
+    <v-card width="400" class="mx-auto mt-5">
       <v-card-title class="pb-0">
         <h1>Login</h1>
       </v-card-title>
       <v-card-text>
         <v-form v-model="form">
-          <v-text-field 
-           v-model="username"
-            label="Username" 
+          <v-text-field
+            v-model="username"
+            label="Username"
             prepend-icon="mdi-account-circle"
             :rules="[required]"
           />
-          <v-text-field 
-           v-model="password"
-            :type="showPassword ? 'text' : 'password'" 
+          <v-text-field
+            v-model="password"
+            :type="showPassword ? 'text' : 'password'"
             label="Password"
             prepend-icon="mdi-lock"
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -54,14 +48,18 @@ function required (v) {
       <v-divider></v-divider>
       <v-card-actions>
         <v-btn color="success">Register</v-btn>
-        <v-spacer/>
-        <v-btn color="info" :disabled="!form"
-          :loading="loading" type="submit" @click="loginHandler">Login</v-btn>
+        <v-spacer />
+        <v-btn
+          color="info"
+          :disabled="!form"
+          :loading="loading"
+          type="submit"
+          @click="loginHandler"
+          >Login</v-btn
+        >
       </v-card-actions>
     </v-card>
-    </div>
+  </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
