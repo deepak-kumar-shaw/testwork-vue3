@@ -5,8 +5,10 @@
  */
 
 // Plugins
-import vuetify from './vuetify'
+import vuetify from "./vuetify";
+import { createPinia } from "pinia";
 
-export function registerPlugins (app) {
-  app.use(vuetify)
+export function registerPlugins(app) {
+  app.use(createPinia());
+  app.use(vuetify);
 }

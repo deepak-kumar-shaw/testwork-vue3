@@ -1,5 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
+import { useUsersStore } from "../store";
+const myStore = useUsersStore();
 
 const form = ref(false);
 const username = ref("");
@@ -12,7 +14,11 @@ const loginHandler = () => {
   console.log("login");
   if (!form.value) return;
   loading.value = true;
-  setTimeout(() => (loading.value = false), 2000);
+  setTimeout(() => {
+    let valid = myStore.authenticateUser(username.value, password.value);
+    loading.value = false;
+    alert("authenticateUser: " + valid);
+  }, 2000);
 };
 
 function required(v) {
