@@ -1,6 +1,6 @@
 const users = [
-  { nmme: "deepak", pass: "deepak" },
-  { nmme: "arun", pass: "arun" },
+  { name: "deepak", pass: "deepak" },
+  { name: "arun", pass: "arun" },
   { nmme: "admin", pass: "admin" },
 ];
 export default users;

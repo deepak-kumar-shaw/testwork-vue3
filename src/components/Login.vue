@@ -2,6 +2,8 @@
 import { ref, computed } from "vue";
 import { useUsersStore } from "../store";
 const myStore = useUsersStore();
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const form = ref(false);
 const username = ref("");
@@ -11,14 +13,16 @@ const loading = ref(false);
 const showPassword = ref(false);
 
 const loginHandler = () => {
+  let that = this;
   console.log("login");
   if (!form.value) return;
   loading.value = true;
   setTimeout(() => {
     let valid = myStore.authenticateUser(username.value, password.value);
     loading.value = false;
-    alert("authenticateUser: " + valid);
-  }, 2000);
+    if (valid) router.push("/myappointments");
+    else alert("User name or Password is wrong");
+  }, 1000);
 };
 
 function required(v) {
